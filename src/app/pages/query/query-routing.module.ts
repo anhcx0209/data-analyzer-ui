@@ -5,11 +5,11 @@ import {QueryAddComponent} from './query-add/query-add.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'list',
     component: QueryListComponent
   },
   {
-    path: 'add',
+    path: 'create',
     component: QueryAddComponent
   }
 ];

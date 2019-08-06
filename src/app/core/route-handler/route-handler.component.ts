@@ -281,6 +281,24 @@ export class RouteHandlerComponent implements OnInit {
       position: 1
     });
 
+    const subItemsQuery = [
+      new SidenavItem({
+        name: 'New Query',
+        route: '/query/create',
+        parent: itemQuery,
+        subItems: [ ],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Query List',
+        route: '/query/list',
+        parent: itemQuery,
+        subItems: [ ],
+        position: 1
+      })
+    ];
+
+    itemQuery.subItems.push(...subItemsQuery);
     const itemReport = new SidenavItem({
       name: 'Reports',
       icon: 'assessment',
