@@ -60,21 +60,6 @@ export class RouteHandlerComponent implements OnInit {
     // Define Menu Items here
 
     // Top Level Item (The item to click on so the dropdown opens)
-    const general = new SidenavItem({
-      name: 'General',
-      icon: 'dashboard',
-      route: '/dashboard/crm',
-      subItems: [ ],
-      position: 1
-    });
-
-    const users = new SidenavItem({
-      name: 'Users',
-      icon: 'people',
-      route: '/users',
-      subItems: [ ],
-      position: 1
-    });
 
     const dashboard = new SidenavItem({
       name: 'Dashboard',
@@ -114,22 +99,6 @@ export class RouteHandlerComponent implements OnInit {
 
     // Push the just created Sub Items into the Top Level Item
     dashboard.subItems.push(...dashboardSubItems);
-
-    const inbox = new SidenavItem({
-      name: 'Inbox',
-      icon: 'mail',
-      route: '/apps/inbox',
-      subItems: [ ],
-      position: 1
-    });
-
-    const chat = new SidenavItem({
-      name: 'Chat',
-      icon: 'message',
-      route: '/apps/chat',
-      subItems: [ ],
-      position: 1
-    });
 
     const forms = new SidenavItem({
       name: 'Forms',
@@ -191,40 +160,6 @@ export class RouteHandlerComponent implements OnInit {
     ];
 
     pages.subItems.push(...pagesSubItems);
-
-    const auth = new SidenavItem({
-      name: 'Auth',
-      icon: 'person_pin',
-      route: null,
-      subItems: [ ],
-      position: 1
-    });
-
-    const authSubItems = [
-      new SidenavItem({
-        name: 'Login',
-        route: '/auth/login',
-        parent: auth,
-        subItems: [ ],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Register',
-        route: '/auth/register',
-        parent: auth,
-        subItems: [ ],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Forgot Password',
-        route: '/auth/forgot-password',
-        parent: auth,
-        subItems: [ ],
-        position: 1
-      }),
-    ];
-
-    auth.subItems.push(...authSubItems);
 
     const components = new SidenavItem({
       name: 'Components',
@@ -289,30 +224,6 @@ export class RouteHandlerComponent implements OnInit {
 
     tables.subItems.push(...tablesSubItems);
 
-    /*const editor = new SidenavItem({
-      name: 'Editor',
-      icon: 'format_shapes',
-      route: '/editor',
-      subItems: [ ],
-      position: 1
-    });*/
-
-    const dragAndDrop = new SidenavItem({
-      name: 'Drag & Drop',
-      icon: 'mouse',
-      route: '/drag-and-drop',
-      subItems: [ ],
-      position: 1
-    });
-
-    const maps = new SidenavItem({
-      name: 'Maps',
-      icon: 'map',
-      route: '/maps/google-maps',
-      subItems: [ ],
-      position: 1
-    });
-
     const icons = new SidenavItem({
       name: 'Material Icons',
       icon: 'grade',
@@ -321,77 +232,76 @@ export class RouteHandlerComponent implements OnInit {
       position: 1
     });
 
-    const multiLevelMenu = new SidenavItem({
-      name: 'Multi-Level Menu',
-      icon: 'menu',
-      route: null,
+    const itemGeneral = new SidenavItem({
+      name: 'General',
+      icon: 'dashboard',
+      route: '/dashboard/crm',
       subItems: [ ],
       position: 1
     });
 
-    const multiLevelMenuLevel1 = new SidenavItem({
-      name: 'Level 1',
-      route: null,
-      parent: multiLevelMenu,
+    const itemUsers = new SidenavItem({
+      name: 'Users',
+      icon: 'people',
       subItems: [ ],
       position: 1
     });
 
-    const multiLevelMenuLevel2 = new SidenavItem({
-      name: 'Level 2',
-      route: null,
-      parent: multiLevelMenuLevel1,
+    const usersSubItems = [
+      new SidenavItem({
+        name: 'Users Management',
+        route: '/users/users-management',
+        parent: itemUsers,
+        subItems: [ ],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Roles Management',
+        route: '/users/roles-management',
+        parent: itemUsers,
+        subItems: [ ],
+        position: 1
+      })
+    ];
+    itemUsers.subItems.push(...usersSubItems);
+
+    const itemAggregations = new SidenavItem({
+      name: 'Aggregations',
+      icon: 'layers',
+      route: '/aggregations',
       subItems: [ ],
       position: 1
     });
 
-    const multiLevelMenuLevel3 = new SidenavItem({
-      name: 'Level 3',
-      route: null,
-      parent: multiLevelMenuLevel2,
-      subItems: [ ],
+    const itemQuery = new SidenavItem({
+      name: 'Query',
+      icon: 'build',
+      route: '/query',
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenuLevel4 = new SidenavItem({
-      name: 'Level 4',
-      route: null,
-      parent: multiLevelMenuLevel3,
-      subItems: [ ],
+    const itemReport = new SidenavItem({
+      name: 'Reports',
+      icon: 'assessment',
+      route: '/reports',
+      subItems: [],
       position: 1
     });
-
-    const multiLevelMenuLevel5 = new SidenavItem({
-      name: 'Level 5',
-      route: null,
-      parent: multiLevelMenuLevel4,
-      subItems: [ ],
-      position: 1
-    });
-
-    multiLevelMenu.subItems.push(multiLevelMenuLevel1);
-    multiLevelMenuLevel1.subItems.push(multiLevelMenuLevel2);
-    multiLevelMenuLevel2.subItems.push(multiLevelMenuLevel3);
-    multiLevelMenuLevel3.subItems.push(multiLevelMenuLevel4);
-    multiLevelMenuLevel4.subItems.push(multiLevelMenuLevel5);
 
     // Send the created Menu structure to Redux/ngrx (you only need
     // to send the Top Level Item, all dropdown items will be added automatically)
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(general));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(users));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemGeneral));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemUsers));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemAggregations));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemQuery));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemReport));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(inbox));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(chat));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(forms));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(components));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(tables));
-    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(editor));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(auth));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(pages));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(dragAndDrop));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(maps));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(icons));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(multiLevelMenu));
   }
 
 }

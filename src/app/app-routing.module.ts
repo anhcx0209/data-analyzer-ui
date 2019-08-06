@@ -14,8 +14,24 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'users',
-        loadChildren: 'app/pages/tables/all-in-one-table/all-in-one-table.module#AllInOneTableModule'
+        path: 'users/users-management',
+        loadChildren: 'app/pages/users/users-management/users-management.module#UsersManagementModule'
+      },
+      {
+        path: 'users/roles-management',
+        loadChildren: 'app/pages/users/roles-management/roles-management.module#RolesManagementModule'
+      },
+      {
+        path: 'aggregations',
+        loadChildren: 'app/pages/aggregations/aggregations.module#AggregationsModule'
+      },
+      {
+        path: 'query',
+        loadChildren: 'app/pages/query/query.module#QueryModule'
+      },
+      {
+        path: 'reports',
+        loadChildren: 'app/pages/reports/reports.module#ReportsModule'
       },
       {
         path: 'dashboard/all-in-one',
