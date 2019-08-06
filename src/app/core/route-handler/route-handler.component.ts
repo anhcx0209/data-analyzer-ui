@@ -60,6 +60,22 @@ export class RouteHandlerComponent implements OnInit {
     // Define Menu Items here
 
     // Top Level Item (The item to click on so the dropdown opens)
+    const general = new SidenavItem({
+      name: 'General',
+      icon: 'dashboard',
+      route: '/dashboard/crm',
+      subItems: [ ],
+      position: 1
+    });
+
+    const users = new SidenavItem({
+      name: 'Users',
+      icon: 'people',
+      route: '/users',
+      subItems: [ ],
+      position: 1
+    });
+
     const dashboard = new SidenavItem({
       name: 'Dashboard',
       icon: 'dashboard',
@@ -359,7 +375,10 @@ export class RouteHandlerComponent implements OnInit {
     multiLevelMenuLevel3.subItems.push(multiLevelMenuLevel4);
     multiLevelMenuLevel4.subItems.push(multiLevelMenuLevel5);
 
-    // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
+    // Send the created Menu structure to Redux/ngrx (you only need
+    // to send the Top Level Item, all dropdown items will be added automatically)
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(general));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(users));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inbox));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(chat));

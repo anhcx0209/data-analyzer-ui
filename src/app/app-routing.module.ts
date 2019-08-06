@@ -14,6 +14,10 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'users',
+        loadChildren: 'app/pages/tables/all-in-one-table/all-in-one-table.module#AllInOneTableModule'
+      },
+      {
         path: 'dashboard/all-in-one',
         loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule'
       },
