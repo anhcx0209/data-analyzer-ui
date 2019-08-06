@@ -36,24 +36,24 @@ export class RouteHandlerComponent implements OnInit {
       switch (layout) {
         case 'alpha': {
           this.store.dispatch(new SelectLayoutAction('alpha'));
-          break
+          break;
         }
 
         case 'beta': {
           this.store.dispatch(new SelectLayoutAction('beta'));
-          break
+          break;
         }
 
         case 'gamma': {
           this.store.dispatch(new SelectLayoutAction('gamma'));
-          break
+          break;
         }
       }
 
       const elevation = params.get('elevation');
 
       if (elevation) {
-        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation))
+        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation));
       }
     });
 
@@ -268,10 +268,27 @@ export class RouteHandlerComponent implements OnInit {
     const itemAggregations = new SidenavItem({
       name: 'Aggregations',
       icon: 'layers',
-      route: '/aggregations',
       subItems: [ ],
       position: 1
     });
+
+    const subItemAggregations = [
+      new SidenavItem({
+        name: 'Create new',
+        route: '/aggregations/create',
+        parent: itemAggregations,
+        subItems: [],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Agg. List',
+        route: '/aggregations',
+        parent: itemAggregations,
+        subItems: [],
+        position: 1
+      })
+    ];
+    itemAggregations.subItems.push(...subItemAggregations);
 
     const itemQuery = new SidenavItem({
       name: 'Query',
