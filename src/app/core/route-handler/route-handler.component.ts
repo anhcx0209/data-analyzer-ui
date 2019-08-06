@@ -235,7 +235,7 @@ export class RouteHandlerComponent implements OnInit {
     const itemGeneral = new SidenavItem({
       name: 'General',
       icon: 'dashboard',
-      route: '/dashboard/crm',
+      route: '/dashboard/all-in-one',
       subItems: [ ],
       position: 1
     });
@@ -331,12 +331,12 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemAggregations));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemQuery));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(itemReport));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(forms));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(components));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(tables));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(pages));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(icons));
+    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
+    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(forms));
+    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(components));
+    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(tables));
+    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(pages));
+    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(icons));
   }
 
 }
