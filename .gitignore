@@ -27,6 +27,10 @@
 # WebStorm
 .idea/
 
+# build file
+.dist/
+dist.tar.gz
+
 # misc
 /.sass-cache
 /connect.lock
