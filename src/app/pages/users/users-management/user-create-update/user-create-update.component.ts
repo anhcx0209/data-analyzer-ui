@@ -8,7 +8,7 @@ import { User } from './user.model';
 @Component({
   selector: 'elastic-customer-create-update',
   templateUrl: './user-create-update.component.html',
-  styleUrls: ['./customer-create-update.component.scss']
+  styleUrls: ['./user-create-update.component.scss']
 })
 export class UserCreateUpdateComponent implements OnInit {
 
