@@ -18,7 +18,7 @@ export class IdxService {
 
   getIndexes(): Observable<AssIndex[]> {
     const url = this.baseUrl + 'querybuilder/master_file/index';
-    return this.http.get<Observable<any>>(url).pipe(
+    return this.http.get<any>(url).pipe(
       map(obj => obj.indices)
     );
   }
