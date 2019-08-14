@@ -35,6 +35,7 @@
     "@ngrx/store": "7.0.0-beta.0",
     "@nguniversal/express-engine": "~7.0.0",
     "@nguniversal/module-map-ngfactory-loader": "~7.0.0",
+    "angular-in-memory-web-api": "^0.8.0",
     "angular-sortablejs": "^2.2.1",
     "angular2-query-builder": "^0.4.2",
     "chart.js": "^2.6.0",

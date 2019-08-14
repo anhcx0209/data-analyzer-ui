@@ -1,4 +1,5 @@
 export class AssAggregation {
+  id: number;
   name: string;
   description: string;
   content: string;
