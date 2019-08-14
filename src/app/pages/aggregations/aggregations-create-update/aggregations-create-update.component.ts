@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {IdxService} from '../../../api-services/idx.service';
+import {Observable, of} from 'rxjs';
+import {AssIndex} from '../../../model/ass-index';
+import {GRAPHS} from '../../../model/mock-agg-graphs';
+import {AssGraph} from '../../../model/ass-graph';
+import {GraphService} from '../../../api-services/graph.service';
+import {AssAggregation} from '../../../api-services/ass-aggregation';
 
 @Component({
   selector: 'elastic-aggregations-create-update',
@@ -7,9 +14,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AggregationsCreateUpdateComponent implements OnInit {
 
-  constructor() { }
+  showBasicFormSource = false;
 
-  ngOnInit() {
+  name: string;
+
+
+  graphs: AssGraph[];
+
+  indexes$: Observable<AssIndex[]>;
+
+  model = new AssAggregation();
+
+  constructor(private idxService: IdxService, private graphService: GraphService) {
   }
 
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    this.indexes$ = this.idxService.getIndexes();
+    this.graphs = GRAPHS;
+  }
+
+  get diagnostic() {
+    return JSON.stringify(this.model);
+  }
 }
