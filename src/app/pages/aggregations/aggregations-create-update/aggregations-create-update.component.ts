@@ -37,6 +37,11 @@ export class AggregationsCreateUpdateComponent implements OnInit {
     this.graphs = GRAPHS;
   }
 
+  newAggregation() {
+    // TODO: validation here
+    console.log(JSON.stringify(this.model));
+  }
+
   get diagnostic() {
     return JSON.stringify(this.model);
   }
