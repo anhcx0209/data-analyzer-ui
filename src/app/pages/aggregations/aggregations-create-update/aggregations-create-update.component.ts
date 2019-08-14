@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {IdxService} from '../../../api-services/idx.service';
+import {IdxService} from '../../../service/idx.service';
 import {Observable, of} from 'rxjs';
 import {AssIndex} from '../../../model/ass-index';
 import {GRAPHS} from '../../../model/mock-agg-graphs';
 import {AssGraph} from '../../../model/ass-graph';
-import {GraphService} from '../../../api-services/graph.service';
-import {AssAggregation} from '../../../api-services/ass-aggregation';
+import {GraphService} from '../../../service/graph.service';
+import {AssAggregation} from '../../../model/ass-aggregation';
 
 @Component({
   selector: 'elastic-aggregations-create-update',

@@ -1,7 +1,60 @@
-<div class="container">
-  <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
-    <mat-form-field>
-      <input matInput placeholder="Name" type="text" required>
-    </mat-form-field>
+<div class="all-in-one-table">
+
+
+  <div class="container">
+
+    <elastic-list name="Aggregations" [columns]="columns" (filterChange)="onFilterChange($event)">
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="checkbox">
+          <mat-header-cell class="actions-cell" *matHeaderCellDef>
+            <mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
+          </mat-header-cell>
+          <mat-cell class="actions-cell" *matCellDef="let row">
+            <mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
+          </mat-cell>
+        </ng-container>
+
+        <!-- fullName Column -->
+        <ng-container *ngFor="let column of columns">
+          <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row[column.property] }}</mat-cell>
+          </ng-container>
+        </ng-container>
+
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell class="actions-cell" *matCellDef="let row">
+            <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+
+            <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+              <button mat-menu-item>
+                <span>Modify</span>
+              </button>
+              <button mat-menu-item>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: visibleColumns;" class="clickable"></mat-row>
+      </mat-table>
+
+      <mat-paginator class="paginator" [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+
+    </elastic-list>
+
   </div>
+
 </div>
