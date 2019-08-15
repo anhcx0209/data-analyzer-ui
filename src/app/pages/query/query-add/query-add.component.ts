@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {QueryBuilderConfig} from 'angular2-query-builder';
+import {Field} from 'angular2-query-builder/dist/components/query-builder/query-builder.interfaces';
 
 @Component({
   selector: 'elastic-query-add',
@@ -18,15 +19,23 @@ export class QueryAddComponent implements OnInit {
 
   config: QueryBuilderConfig = {
     fields: {
-      age: {name: 'Age', type: 'number'},
       gender: {
-        name: 'Gender',
-        type: 'category',
-        options: [
-          {name: 'Male', value: 'm'},
-          {name: 'Female', value: 'f'}
+        name: 'shoppers.validFields.gender',
+        type: 'string',
+        operators: [
+          'not_equal',
+          'begins_with',
+          'ends_with',
+          'not_ends_with',
+          'is_null',
+          'equal',
+          'is_not_null',
+          'not_begins_with',
+          'contains',
+          'not_contains',
         ]
-      }
+      },
+      age: {name: 'Age', type: 'number'}
     }
   };
 
@@ -47,6 +56,10 @@ export class QueryAddComponent implements OnInit {
       {'key': '2019-01-03', 'value': 2.999},
       {'key': '2019-01-03', 'value': 2.999}
     ];
+  }
+
+  get sneakQueryJson() {
+    return JSON.stringify(this.query);
   }
 
   ngOnInit() {

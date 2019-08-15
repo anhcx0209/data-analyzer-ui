@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
   <div class="login mat-elevation-z12">
     <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
-      <img class="logo" src="assets/img/logo2x.png">
+      <h3 style="color: white">Analytics System Service</h3>
     </div>
     <form #form="ngForm" (ngSubmit)="login()">
       <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
@@ -16,7 +16,6 @@
           <a class="forgot-password" [routerLink]="['/auth/forgot-password']">Forgot Password?</a>
         </div>
         <button color="primary" mat-raised-button [disabled]="!form.valid">SIGN IN</button>
-        <p class="note">Don't have an account?<br/> <a [routerLink]="['/auth/register']">Click here to create one</a></p>
       </div>
     </form>
   </div>
