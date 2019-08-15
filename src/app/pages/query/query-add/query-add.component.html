@@ -1,79 +1,77 @@
 <div class="form-elements">
+  <!-- header -->
+  <elastic-page-header [height]="'180px'" background="url(/assets/img/demo/headers/mac-1.png)" [reverse]="true">
+  </elastic-page-header>
 
-  <elastic-page-header [height]="'180px'" background="url(/assets/img/demo/headers/mac-1.png)"
-                       [reverse]="true"></elastic-page-header>
-
+  <!-- container -->
   <div class="container">
 
     <elastic-breadcrumbs [currentPage]="'Create'" [names]="['Query']" [header]="'primary'"></elastic-breadcrumbs>
 
-    <div fxLayout="row" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutGap="24px">
+      <div fxLayout="row" fxLayoutGap="24px">
+        <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
+          <h3>Query builder</h3>
 
-      <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
-        <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
-          <div>
-            <div class="title">Query Builder</div>
+          <div class="content" fxLayout="column">
+            <form #queryForm="ngForm" fxLayout="column">
+              <mat-form-field fxFlex>
+                <mat-select (selectionChange)="fetchAttributes($event)" placeholder="Index" name="index_type"
+                  [(ngModel)]="queryModel.index_type" required>
+                  <mat-option *ngFor="let idx of indexes$ | async" [value]="idx.name">
+                    {{ idx.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput name="name" [(ngModel)]="queryModel.name" placeholder="Name" type="text" required>
+              </mat-form-field>
+
+              <query-builder name="query" [(ngModel)]="queryModel.query" [config]="config3"></query-builder>
+
+              <mat-form-field fxFlex>
+                <mat-select placeholder="Aggregations" name="agg_id" [(ngModel)]="selectedAgg" required>
+                  <mat-option *ngFor="let idx of aggregations$ | async" [value]="idx">
+                    {{ idx.name }} ( {{ idx.description }} )
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+                <button mat-button color="primary">Save</button>
+                <button mat-button (click)="runQuery()" color="primary">Get Data</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- end of first card -->
+
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+          <h3>Final query to api</h3>
+          <ngx-json-viewer [json]="lastQuery"></ngx-json-viewer>
+        </div>
+        <!-- end of second card -->
+      </div>
+      <!-- end of 1st row -->
+
+      <div fxLayout="row" fxLayoutGap="24px">
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+          <p>
+            {{ lastQueryJson }}
+          </p>
+        </div>
+
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+          <h3>Result</h3>
+          <div class="content">
+            <canvas width="150" height="90" #canvas></canvas>
           </div>
         </div>
 
-        <div class="content" fxLayout="column">
-          <div class="result" fxLayout="column">
-            {{ sneakQueryJson }}
-            <mat-form-field>
-              <input matInput placeholder="Name" type="text" required>
-            </mat-form-field>
-
-            <query-builder [(ngModel)]='query' [config]='config'></query-builder>
-
-            <mat-form-field>
-              <input matInput placeholder="Index type" type="text" required>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input matInput placeholder="Modifiable Field" type="text" required>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input matInput placeholder="Aggregation" type="text" required>
-            </mat-form-field>
-
-            <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
-              <mat-slide-toggle color="accent" [checked]="true">
-                Is Public?
-              </mat-slide-toggle>
-
-              <mat-slide-toggle color="accent" [checked]="true">
-                Active
-              </mat-slide-toggle>
-            </div>
-
-            <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
-              <button mat-raised-button color="primary">Save</button>
-              <button mat-raised-button color="primary">Get Data</button>
-            </div>
-          </div>
-        </div>
       </div>
-
-      <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
-        <div fxFlex class="mat-elevation-z2">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Key</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of rows">
-                <td>{{ row.key }}</td>
-                <td>{{ row.value }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+      <!-- end of 2nd row -->
     </div>
+
   </div>
 </div>

@@ -6,10 +6,11 @@ import { QueryBuilderModule } from 'angular2-query-builder';
 import { QueryRoutingModule } from './query-routing.module';
 import { QueryAddComponent } from './query-add/query-add.component';
 import { QueryListComponent } from './query-list/query-list.component';
-import {FormsModule} from '@angular/forms';
-import {BreadcrumbsModule} from '../../core/breadcrumbs/breadcrumbs.module';
-import {UtilsModule} from '../../core/utils/utils.module';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { BreadcrumbsModule } from '../../core/breadcrumbs/breadcrumbs.module';
+import { UtilsModule } from '../../core/utils/utils.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import {
   MatButtonModule, MatCheckboxModule,
   MatDatepickerModule,
@@ -18,7 +19,8 @@ import {
   MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatTabsModule,
   MatTooltipModule
 } from '@angular/material';
-import {PageHeaderModule} from '../../core/page-header/page-header.module';
+import { PageHeaderModule } from '../../core/page-header/page-header.module';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [QueryAddComponent, QueryListComponent],
@@ -27,6 +29,7 @@ import {PageHeaderModule} from '../../core/page-header/page-header.module';
     QueryRoutingModule,
     // plugin
     QueryBuilderModule,
+    NgxJsonViewerModule,
     FormsModule,
     BreadcrumbsModule,
     UtilsModule,
@@ -46,4 +49,5 @@ import {PageHeaderModule} from '../../core/page-header/page-header.module';
     PageHeaderModule
   ]
 })
-export class QueryModule { }
+export class QueryModule {
+}
