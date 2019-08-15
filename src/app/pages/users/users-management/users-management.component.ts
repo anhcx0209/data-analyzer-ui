@@ -51,7 +51,6 @@ export class UsersManagementComponent implements List<User>, OnInit, OnDestroy {
 
   ngOnInit() {
     this.users = USERS_DATA.map(user => new User(user));
-    console.log(this.users);
     this.subject$.next(this.users);
     this.data$ = this.subject$.asObservable();
     this.database = new ListDatabase<User>();
@@ -63,7 +62,7 @@ export class UsersManagementComponent implements List<User>, OnInit, OnDestroy {
       this.database.dataChange.next(users);
       this.resultsLength = users.length;
     });
-    this.dataSource = new ListDataSource<User>(this.database, this.sort, this.paginator, this.columns)
+    this.dataSource = new ListDataSource<User>(this.database, this.sort, this.paginator, this.columns);
   }
 
   ngOnDestroy(): void {
