@@ -1,7 +1,6 @@
 <div class="form-elements">
 
   <div class="container">
-    {{ diagnostic }}
     <div fxLayout="column" fxLayoutGap="24px">
       <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
         <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
@@ -26,7 +25,7 @@
 
               <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
                 <mat-form-field fxFlex>
-                  <mat-select placeholder="Indexes" [(ngModel)]="model.indexes" name="indexes" multiple>
+                  <mat-select placeholder="Indexes" [(ngModel)]="model.indexes" name="indexes" multiple required>
                     <mat-option *ngFor="let idx of indexes$ | async" [value]="idx.name">
                       {{ idx.name }}
                     </mat-option>
@@ -34,7 +33,7 @@
                 </mat-form-field>
 
                 <mat-form-field fxFlex>
-                  <mat-select placeholder="Type" [(ngModel)]="model.type" name="type">
+                  <mat-select placeholder="Type" [(ngModel)]="model.type" name="type" required>
                     <mat-option *ngFor="let graph of graphs" [value]="graph.name">
                       {{ graph.name }}
                     </mat-option>

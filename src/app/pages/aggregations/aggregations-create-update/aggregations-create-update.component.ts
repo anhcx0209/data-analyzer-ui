@@ -23,7 +23,7 @@ export class AggregationsCreateUpdateComponent implements OnInit {
 
   indexes$: Observable<AssIndex[]>;
 
-  model = new AssAggregation();
+  model = new AssAggregation({});
 
   constructor(private idxService: IdxService, private graphService: GraphService) {
   }
@@ -38,11 +38,7 @@ export class AggregationsCreateUpdateComponent implements OnInit {
   }
 
   newAggregation() {
-    // TODO: validation here
-    console.log(JSON.stringify(this.model));
-  }
-
-  get diagnostic() {
-    return JSON.stringify(this.model);
+    // TODO: use api to save here
+    alert((JSON.stringify(this.model.content)));
   }
 }
