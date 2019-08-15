@@ -63,7 +63,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
       this.layout = selectedLayout;
       this.cd.markForCheck();
     });
-    // /Layout
+
+    // FIXME: remove this tricky
+    this.toggleSidenavCollapse();
 
     this.mediaReplayService.media$.pipe(
       takeUntil(componentDestroyed(this))
