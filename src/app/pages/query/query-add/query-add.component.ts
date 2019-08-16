@@ -288,12 +288,12 @@ export class QueryAddComponent implements OnInit, AfterViewInit {
     let assRules: AssRule[] = [];
     rule.rules.forEach((item) => {
       assRules.push({
-        id: item.field,
-        field: item.field,
+        id: item['field'],
+        field: item['field'],
         type: 'string',
-        operator: item.operator,
+        operator: item['operator'],
         input: 'text',
-        value: item.value
+        value: item['value']
       })
     });
     let assRS: AssRuleSet = {
