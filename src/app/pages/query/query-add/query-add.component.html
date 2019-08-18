@@ -4,11 +4,11 @@
   </elastic-page-header>
 
   <!-- container -->
-  <div class="container">
+  <div class="xcontainer">
 
     <elastic-breadcrumbs [currentPage]="'Create'" [names]="['Query']" [header]="'primary'"></elastic-breadcrumbs>
 
-    <div fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="column">
       <div fxLayout="row" fxLayoutGap="24px">
         <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
           <h3>Query builder</h3>
@@ -28,7 +28,7 @@
                 <input matInput name="name" [(ngModel)]="queryModel.name" placeholder="Name" type="text" required>
               </mat-form-field>
 
-              <query-builder name="query" [(ngModel)]="queryModel.query" [config]="config3"></query-builder>
+              <div id="query-builder"></div>
 
               <mat-form-field fxFlex>
                 <mat-select placeholder="Aggregations" name="agg_id" [(ngModel)]="selectedAgg" required>
@@ -39,7 +39,7 @@
               </mat-form-field>
 
               <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
-                <button mat-button color="primary">Save</button>
+                <button mat-button color="primary" [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">Save</button>
                 <button mat-button (click)="runQuery()" color="primary">Get Data</button>
               </div>
             </form>
@@ -48,30 +48,16 @@
         <!-- end of first card -->
 
         <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
-          <h3>Final query to api</h3>
-          <ngx-json-viewer [json]="lastQuery"></ngx-json-viewer>
-        </div>
-        <!-- end of second card -->
-      </div>
-      <!-- end of 1st row -->
-
-      <div fxLayout="row" fxLayoutGap="24px">
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
-          <p>
-            {{ lastQueryJson }}
-          </p>
-        </div>
-
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
           <h3>Result</h3>
           <div class="content">
             <canvas width="150" height="90" #canvas></canvas>
           </div>
         </div>
-
+        <!-- end of second card -->
       </div>
-      <!-- end of 2nd row -->
+      <!-- end of 1st row -->
     </div>
-
+    <!-- swal  -->
+    <swal #validateSwal title="Warning" text="You must fill all required fields." type="error"></swal>
   </div>
 </div>

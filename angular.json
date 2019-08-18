@@ -27,9 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/jQuery-QueryBuilder/dist/css/query-builder.default.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js"
+            ]
           },
           "configurations": {
             "production": {

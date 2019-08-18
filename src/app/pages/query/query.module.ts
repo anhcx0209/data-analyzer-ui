@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { QueryBuilderModule } from 'angular2-query-builder';
-
 import { QueryRoutingModule } from './query-routing.module';
 import { QueryAddComponent } from './query-add/query-add.component';
 import { QueryListComponent } from './query-list/query-list.component';
@@ -20,16 +17,15 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { PageHeaderModule } from '../../core/page-header/page-header.module';
-import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [QueryAddComponent, QueryListComponent],
   imports: [
     CommonModule,
     QueryRoutingModule,
-    // plugin
-    QueryBuilderModule,
-    NgxJsonViewerModule,
+    // plugin   
+    SweetAlert2Module,
     FormsModule,
     BreadcrumbsModule,
     UtilsModule,

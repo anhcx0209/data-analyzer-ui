@@ -23,7 +23,7 @@ export const DEMO_AGGREGATIONS = [
     'id': 10003,
     'name': 'sample_line_graph',
     'description': 'ShopperId',
-    'content': '{ "group_by_shopperId": { "terms": { "field": "shopperId" }, "aggs": { "Metric_Op": { "max": { "field": "createTime" } }, "op_value": { "bucket_selector": { "buckets_path": { "val": "Metric_Op" }, "script": "params.val > 1000" } } } } }',
+    'content': '{ "3": { "histogram": { "script": { "source": "LocalDateTime.ofInstant(doc[\'event_date\'].value.toInstant(), ZoneId.of(\'GMT+7\')).getDayOfWeek().getValue()", "lang": "painless" }, "interval": 1, "min_doc_count": 1 }, "aggs": { "2": { "cardinality": { "field": "browser_id_hash" } } } } }',
     'indexes': ['answers'],
     'type': 'line_graph',
     'max_time_ranges': '1m',
