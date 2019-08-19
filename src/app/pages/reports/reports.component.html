@@ -1,60 +1,26 @@
 <div class="page components">
 
-  <elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true"></elastic-page-header>
+  <elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+                       [reverse]="true"></elastic-page-header>
 
-  <div class="container">
+  <div class="xcontainer">
+    <elastic-breadcrumbs [currentPage]="'Report'" [header]="'primary'"></elastic-breadcrumbs>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="24px">
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+          <!--        <elastic-search-bar></elastic-search-bar>-->
+          <mat-list>
+            <mat-list-item> Pepper</mat-list-item>
+            <mat-list-item> Salt</mat-list-item>
+            <mat-list-item> Paprika</mat-list-item>
+          </mat-list>
 
-    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
-      <div class="sticky-menu" fxFlex #sticky fxHide fxShow.gt-sm>
-        <mat-list class="list">
-          <h3 matSubheader>All System's Report</h3>
-          <mat-list-item class="list-item" (click)="scrollTo(autocomplete)" matRipple>
-            <h4 matLine>Report 1</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(button)" matRipple>
-            <h4 matLine>Report 2</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(card)" matRipple>
-            <h4 matLine>Report 3</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(dialog)" matRipple>
-            <h4 matLine>Report 4</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(gridlist)" matRipple>
-            <h4 matLine>Report 5</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(list)" matRipple>
-            <h4 matLine>Report 6</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(menu)" matRipple>
-            <h4 matLine>Report 7</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(progress)" matRipple>
-            <h4 matLine>Report 8</h4>
-          </mat-list-item>
-          <mat-list-item class="list-item" (click)="scrollTo(slider)" matRipple>
-            <h4 matLine>Report 9</h4>
-          </mat-list-item>
-        </mat-list>
-      </div>
+          <mat-nav-list>
+<!--            <mat-list-ite m *ngFor="let report of reports">-->
+<!--              <a matLine href="javascript;">{{ report.name }}</a>-->
+<!--            </mat-list-item>-->
+          </mat-nav-list>
 
-      <div fxLayout="column" fxFlex="100%" fxFlex.gt-sm="85%">
-        <elastic-breadcrumbs [currentPage]="'Components'" [header]="'primary'"></elastic-breadcrumbs>
-
-        <div fxLayout="column" fxLayoutGap="24px">
-          <div #autocomplete>
-            <elastic-barchart-widget></elastic-barchart-widget>
-          </div>
-          <div #button>
-            <elastic-areachart-widget></elastic-areachart-widget>
-          </div>
-          <div #card></div>
-          <div #dialog></div>
-          <div #gridlist></div>
-          <div #list></div>
-          <div #menu></div>
-          <div #progress></div>
-          <div #slider></div>
         </div>
       </div>
     </div>
