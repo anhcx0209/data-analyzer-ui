@@ -7,20 +7,24 @@
     <elastic-breadcrumbs [currentPage]="'Report'" [header]="'primary'"></elastic-breadcrumbs>
     <div fxLayout="column">
       <div fxLayout="row" fxLayoutGap="24px">
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
-          <!--        <elastic-search-bar></elastic-search-bar>-->
-          <mat-list>
-            <mat-list-item> Pepper</mat-list-item>
-            <mat-list-item> Salt</mat-list-item>
-            <mat-list-item> Paprika</mat-list-item>
-          </mat-list>
-
-          <mat-nav-list>
-<!--            <mat-list-ite m *ngFor="let report of reports">-->
-<!--              <a matLine href="javascript;">{{ report.name }}</a>-->
-<!--            </mat-list-item>-->
-          </mat-nav-list>
-
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>          
+          <elastic-list name="Reports" [columns]="columns" (filterChange)="onFilterChange($event)">
+              <mat-table #table [dataSource]="dataSource" matSort>
+                <!-- fullName Column -->
+                <ng-container *ngFor="let column of columns">
+                  <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{ row[column.property] }}</mat-cell>
+                  </ng-container>
+                </ng-container>                                
+        
+                <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: visibleColumns;" class="clickable"></mat-row>
+              </mat-table>
+        
+              <mat-paginator class="paginator" [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+        
+            </elastic-list>
         </div>
       </div>
     </div>
