@@ -1,30 +1,36 @@
 <div class="page components">
 
-  <elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)"
-                       [reverse]="true"></elastic-page-header>
+  <elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true">
+  </elastic-page-header>
 
   <div class="xcontainer">
     <elastic-breadcrumbs [currentPage]="'Report'" [header]="'primary'"></elastic-breadcrumbs>
     <div fxLayout="column">
       <div fxLayout="row" fxLayoutGap="24px">
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>          
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
           <elastic-list name="Reports" [columns]="columns" (filterChange)="onFilterChange($event)">
-              <mat-table #table [dataSource]="dataSource" matSort>
-                <!-- fullName Column -->
-                <ng-container *ngFor="let column of columns">
-                  <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{ row[column.property] }}</mat-cell>
-                  </ng-container>
-                </ng-container>                                
-        
-                <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: visibleColumns;" class="clickable"></mat-row>
-              </mat-table>
-        
-              <mat-paginator class="paginator" [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
-        
-            </elastic-list>
+            <mat-table #table [dataSource]="dataSource" matSort>
+              <!-- fullName Column -->
+              <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{ column.name }}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <a [routerLink]="['/reports/id', 1]">
+                      {{ row[column.property] }}
+                    </a>
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: visibleColumns;" class="clickable"></mat-row>
+            </mat-table>
+
+            <mat-paginator class="paginator" [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+
+          </elastic-list>
         </div>
       </div>
     </div>

@@ -30,6 +30,13 @@
 
               <div id="query-builder"></div>
 
+
+              <mat-form-field>
+                <mat-select placeholder="Modifiable Fields" name="mod_fields" multiple>
+                  <mat-option *ngFor="let field of modifiableFields" [value]="field.name">{{field.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
               <mat-form-field fxFlex>
                 <mat-select placeholder="Aggregations" name="agg_id" [(ngModel)]="selectedAgg" required>
                   <mat-option *ngFor="let idx of aggregations$ | async" [value]="idx">

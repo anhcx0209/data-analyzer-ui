@@ -25,7 +25,6 @@ interface QBFilter {
 })
 export class QueryAddComponent implements OnInit, AfterViewInit {
 
-
   constructor(private idxService: IdxService,
     private aggService: AggregationService,
     @Inject(PLATFORM_ID) private platformId: any
@@ -47,6 +46,20 @@ export class QueryAddComponent implements OnInit, AfterViewInit {
 
   indexes$: Observable<AssIndex[]>;
   aggregations$: Observable<AssAggregation[]>;
+  modifiableFields = [
+    {
+      id: 'brand',
+      name: 'brand'
+    },
+    {
+      id: 'user_demographic',
+      name: 'user_demographic'
+    },
+    {
+      id: 'os_name',
+      name: 'os_name'
+    }
+  ];
 
   selectedAgg: AssAggregation = null;
 
@@ -153,6 +166,11 @@ export class QueryAddComponent implements OnInit, AfterViewInit {
               },
               legend: {
                 display: false
+              },
+              elements: {
+                line: {
+                  tension: 0 // disables bezier curves
+                }
               },
               tooltips: {
                 mode: 'index',

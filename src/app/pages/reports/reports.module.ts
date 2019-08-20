@@ -13,9 +13,11 @@ import { AreachartWidgetModule } from '../dashboard/dashboard-statistics/areacha
 import { StateWidgetModule } from '../dashboard/dashboard-statistics/state-widget/state-widget.module';
 import { ToolbarModule } from '../../core/toolbar/toolbar.module';
 import { ListModule } from 'app/core/list/list.module';
+import { ReportDetailComponent } from './report-detail/report-detail.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ReportsComponent],
+  declarations: [ReportsComponent, ReportDetailComponent],
   imports: [
     CommonModule,
     ReportsRoutingModule,
@@ -24,6 +26,7 @@ import { ListModule } from 'app/core/list/list.module';
     ListModule,
     PageHeaderModule,
     BreadcrumbsModule,
+    FormsModule,
     UtilsModule,
     FlexLayoutModule,
     MatRippleModule,    
