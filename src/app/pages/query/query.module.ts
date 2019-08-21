@@ -18,11 +18,13 @@ import {
 } from '@angular/material';
 import { PageHeaderModule } from '../../core/page-header/page-header.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [QueryAddComponent, QueryListComponent],
   imports: [
     CommonModule,
+    NgxJsonViewerModule,
     QueryRoutingModule,
     SweetAlert2Module,
     FormsModule,

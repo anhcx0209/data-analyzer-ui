@@ -61,10 +61,18 @@
           </div>
         </div>
         <!-- end of second card -->
+
+        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+            <h3>Raw Query</h3>
+            <div class="content">
+              <ngx-json-viewer [json]="someObject"></ngx-json-viewer>
+            </div>
+          </div>
+          <!-- end of second card -->
       </div>
       <!-- end of 1st row -->
     </div>
     <!-- swal  -->
-    <swal #validateSwal title="Warning" text="You must fill all required fields." type="error"></swal>
+    <swal #validateSwal title="Warning" text="You must fill all required fields." type="error" ></swal>
   </div>
 </div>
