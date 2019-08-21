@@ -22,9 +22,9 @@ export const DEMO_AGGREGATIONS = [
   {
     'id': 10003,
     'name': 'sample_line_graph',
-    'description': 'ShopperId',
+    'description': 'Get number users group by week days',
     'content': '{ "3": { "histogram": { "script": { "source": "LocalDateTime.ofInstant(doc[\'event_date\'].value.toInstant(), ZoneId.of(\'GMT+7\')).getDayOfWeek().getValue()", "lang": "painless" }, "interval": 1, "min_doc_count": 1 }, "aggs": { "2": { "cardinality": { "field": "browser_id_hash" } } } } }',
-    'indexes': ['answers'],
+    'indexes': ['test_user_data'],
     'type': 'line_graph',
     'max_time_ranges': '1m',
     'status': true

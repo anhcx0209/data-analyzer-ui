@@ -1,6 +1,8 @@
-<div class="form-elements">
-
-  <div class="container">
+<div class="page components">
+  <elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true">
+  </elastic-page-header>
+  <div class="xcontainer">
+    <elastic-breadcrumbs [currentPage]="'Aggregations'" [header]="'primary'"></elastic-breadcrumbs>
     <div fxLayout="column" fxLayoutGap="24px">
       <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
         <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
@@ -16,11 +18,13 @@
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Agg. Description" [(ngModel)]="model.description" name="description" type="text" required>
+                <input matInput placeholder="Agg. Description" [(ngModel)]="model.description" name="description"
+                  type="text" required>
               </mat-form-field>
 
               <mat-form-field>
-                <textarea matInput [rows]="5" placeholder="Agg. Content" [(ngModel)]="model.content" name="content" required></textarea>
+                <textarea matInput [rows]="5" placeholder="Agg. Content" [(ngModel)]="model.content" name="content"
+                  required></textarea>
               </mat-form-field>
 
               <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
@@ -44,7 +48,8 @@
 
             <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
               <mat-form-field fxFlex>
-                <input matInput placeholder="Max time range" type="text" [(ngModel)]="model.max_time_ranges" name="max_time_ranges" required>
+                <input matInput placeholder="Max time range" type="text" [(ngModel)]="model.max_time_ranges"
+                  name="max_time_ranges" required>
               </mat-form-field>
               <div fxFlex>
                 <mat-slide-toggle [checked]="false">Active</mat-slide-toggle>
@@ -52,7 +57,7 @@
             </div>
 
             <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
-              <button mat-button  (click)="newAggregation()" color="primary">Save</button>
+              <button mat-button (click)="newAggregation()" color="primary">Save</button>
             </div>
           </form>
         </div>
