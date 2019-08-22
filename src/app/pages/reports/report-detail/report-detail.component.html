@@ -4,16 +4,12 @@
   </elastic-page-header>
 
   <div class="xcontainer">
-    <elastic-breadcrumbs [currentPage]="'Report 1'" [header]="'primary'"></elastic-breadcrumbs>
+    <elastic-breadcrumbs [currentPage]="'Test User Data Report'" [header]="'primary'"></elastic-breadcrumbs>
 
     <div fxLayout="column">
-      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+      <div fxLayout="row" fxLayoutGap="24px">
+        <div class="card alternative" fxFlex>
           <form #queryForm="ngForm" fxLayout="column">
-            <mat-form-field fxFlex>
-              <input matInput name="brand" [(ngModel)]="modFields.brand" placeholder="Brand" type="text">
-            </mat-form-field>
-
             <mat-form-field fxFlex>
               <input matInput name="user_demographic" [(ngModel)]="modFields.user_demographic" placeholder="Demographic"
                 type="text">
@@ -24,22 +20,16 @@
             </mat-form-field>
 
             <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
-              <button mat-button color="primary" (click)="runQuery()">Get report</button>
+              <button mat-button color="primary" (click)="runQuery()">Modify report</button>
             </div>
           </form>
         </div>
-      </div>
-    </div>
 
-    <div fxLayout="column">
-      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+        <div class="card alternative" fxFlex>
           <h3>Results</h3>
           <canvas width="150" height="90" #canvas></canvas>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
