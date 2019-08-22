@@ -15,8 +15,8 @@ export class ReportDetailComponent implements OnInit {
 
   modFields = {
     brand: '',
-    user_demographic: 0,
-    os_name: ''
+    user_demographic: 18,
+    os_name: 'windoes'
   };
 
   @ViewChild('canvas') canvas: ElementRef;

@@ -11,17 +11,16 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { componentDestroyed } from '../../core/utils/component-destroyed';
 import { DEMO_AGGREGATIONS } from 'app/model/ass-aggregations.demo';
 
-@Component({
-  selector: 'dialog-content-aggregation',
-  templateUrl: 'dialog-content-aggregation.html',
-})
-export class DialogContentAggregation {
-  constructor(
-    public dialogRef: MatDialogRef<DialogContentAggregation>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    
-  }
-}
+// @Component({
+//   selector: 'dialog-content-aggregation',
+//   templateUrl: 'dialog-content-aggregation.html',
+// })
+// // tslint:disable-next-line: component-class-suffix
+// export class DialogContentAggregation {
+//   constructor(
+//     public dialogRef: MatDialogRef<DialogContentAggregation>,
+//     @Inject(MAT_DIALOG_DATA) public data: any) {}
+// }
 
 @Component({
   selector: 'elastic-aggregations',
