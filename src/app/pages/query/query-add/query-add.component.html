@@ -6,9 +6,10 @@
   <!-- container -->
   <div class="xcontainer">
 
-    <elastic-breadcrumbs [currentPage]="'Create'" [names]="['Query']" [header]="'primary'"></elastic-breadcrumbs>
+    <elastic-breadcrumbs [currentPage]="'Create Query'" [names]="['Query']" [header]="'primary'"></elastic-breadcrumbs>
 
-    <div fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="24px">
+
       <div fxLayout="row" fxLayoutGap="24px">
         <div class="basic-forms card alternative" fxFlex="100%" fxFlex.gt-sm>
           <h3>Query builder</h3>
@@ -46,7 +47,8 @@
               </mat-form-field>
 
               <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
-                <button mat-button color="primary" [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">Save as report</button>
+                <button mat-button color="primary" [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">Save
+                  as report</button>
                 <button mat-button (click)="runQuery()" color="primary">Get Data</button>
               </div>
             </form>
@@ -54,25 +56,29 @@
         </div>
         <!-- end of first card -->
 
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
+        <div class="card alternative" fxFlex>
           <h3>Result</h3>
           <div class="content">
             <canvas width="150" height="90" #canvas></canvas>
           </div>
         </div>
         <!-- end of second card -->
-
-        <div class="card alternative" fxFlex="100%" fxFlex.gt-sm>
-            <h3>Raw Query</h3>
-            <div class="content">
-              <ngx-json-viewer [json]="someObject"></ngx-json-viewer>
-            </div>
-          </div>
-          <!-- end of second card -->
       </div>
       <!-- end of 1st row -->
+
+      <div fxLayout="row" fxLayoutGap="24px">
+        <div class="card alternative" fxFlex="1 1 50%">
+          <h3>Raw Query</h3>
+          <div class="content">
+            <ngx-json-viewer [json]="postDataObject"></ngx-json-viewer>
+          </div>
+        </div>
+        <div></div>
+        <!-- end of second card -->
+      </div>
+      <!-- end of 2nd row -->
     </div>
     <!-- swal  -->
-    <swal #validateSwal title="Warning" text="You must fill all required fields." type="error" ></swal>
+    <swal #validateSwal title="Warning" text="You must fill all required fields." type="error"></swal>
   </div>
 </div>

@@ -23,20 +23,7 @@ interface QBFilter {
   templateUrl: './query-add.component.html',
   styleUrls: ['./query-add.component.scss']
 })
-export class QueryAddComponent implements OnInit, AfterViewInit {
-
-  constructor(private idxService: IdxService,
-    private aggService: AggregationService,
-    @Inject(PLATFORM_ID) private platformId: any
-  ) { }
-
-
-  ngOnInit() {
-    this.indexes$ = this.idxService.getIndexes();
-    this.aggregations$ = this.aggService.getAggregations();
-  }
-
-  ngAfterViewInit(): void { }
+export class QueryAddComponent implements OnInit {
 
   rows: any[];
 
@@ -66,6 +53,25 @@ export class QueryAddComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('validateSwal') private validateSwal: SwalComponent;
 
+  constructor(private idxService: IdxService,
+    private aggService: AggregationService,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) { }
+
+
+  ngOnInit() {
+    this.indexes$ = this.idxService.getIndexes();
+    this.aggregations$ = this.aggService.getAggregations();
+  }
+
+  get postDataObject() {
+    return {
+      index: this.queryModel.index_type,
+      query: this.getRules(),
+      aggs: this.getAggs(),
+    };
+  }
+
   newQueryBuilder(newFilters: Array<QBFilter>) {
     $(document).ready(function () {
       $('#query-builder').queryBuilder('destroy');
@@ -78,9 +84,16 @@ export class QueryAddComponent implements OnInit, AfterViewInit {
   }
 
   getRules() {
-    let result = undefined;
-    result = $('#query-builder').queryBuilder('getRules');
-    return result;
+    try {
+      const result = $('#query-builder').queryBuilder('getRules');
+      return result;
+    } catch (error) {
+      return undefined;
+    }
+  }
+
+  getAggs() {
+    return this.selectedAgg ? JSON.parse(this.selectedAgg.content) : undefined;
   }
 
   fetchAttributes(event) {
@@ -116,8 +129,8 @@ export class QueryAddComponent implements OnInit, AfterViewInit {
         jsonData.query = {
           condition: 'AND',
           rules: []
-        }
-      };
+        };
+      }
 
       console.log(jsonData);
       console.log(JSON.stringify(jsonData));
