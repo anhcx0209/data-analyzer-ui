@@ -16,13 +16,13 @@ export class ReportDetailComponent implements OnInit {
   modFields = {
     brand: '',
     user_demographic: 18,
-    os_name: 'windoes'
+    os_name: 'windows'
   };
 
   @ViewChild('canvas') canvas: ElementRef;
 
   ruleOsName = { id: 'metrics.os_name', field: 'metrics.os_name', type: 'string', input: 'text', operator: 'equal', value: 'windows' };
-  ruleDemog = { id: 'user_demographic', field: 'user_demographic', type: 'integer', input: 'number', operator: 'greater', value: 18 };
+  ruleDemog = { id: 'user_demographic', field: 'user_demographic', type: 'integer', input: 'number', operator: 'equal', value: 18 };
 
   chart: any;
 
