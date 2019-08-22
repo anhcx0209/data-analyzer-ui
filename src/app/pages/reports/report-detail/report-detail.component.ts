@@ -18,21 +18,21 @@ export class ReportDetailComponent implements OnInit {
     brand: '',
     user_demographic: '',
     os_name: ''
-  };  
+  };
 
   @ViewChild('canvas') canvas: ElementRef;
 
   modelQuery = {
-    condition: "AND",
+    condition: 'AND',
     rules: [
-      { id: "os_name", field: "os_name", type: "string", input: "text", operator: "equal", value: "windows" },
-      { id: "user_demographic", field: "user_demographic", type: "integer", input: "number", operator: "equal", value: 30 },
-      { id: "brand", field: "brand", type: "string", input: "text", operator: "equal", value: "samsung" }
+      { id: 'os_name', field: 'os_name', type: 'string', input: 'text', operator: 'equal', value: 'windows' },
+      { id: 'user_demographic', field: 'user_demographic', type: 'integer', input: 'number', operator: 'equal', value: 30 },
+      { id: 'brand', field: 'brand', type: 'string', input: 'text', operator: 'equal', value: 'samsung' }
     ]
-  }
+  };
 
   buildRule() {
-    console.log('hello');    
+    console.log('hello');
   }
 
   ngOnInit() {
@@ -46,19 +46,19 @@ export class ReportDetailComponent implements OnInit {
       query: this.modelQuery,
       agg: {
         aggs: {
-          "3": {
-            "histogram": {
-              "script": {
-                "source": "LocalDateTime.ofInstant(doc['event_date'].value.toInstant(), ZoneId.of('GMT+7')).getDayOfWeek().getValue()",
-                "lang": "painless"
+          '3': {
+            'histogram': {
+              'script': {
+                'source': 'LocalDateTime.ofInstant(doc[\'event_date\'].value.toInstant(), ZoneId.of(\'GMT+7\')).getDayOfWeek().getValue()',
+                'lang': 'painless'
               },
-              "interval": 1,
-              "min_doc_count": 1
+              'interval': 1,
+              'min_doc_count': 1
             },
-            "aggs": {
-              "2": {
-                "cardinality": {
-                  "field": "browser_id_hash"
+            'aggs': {
+              '2': {
+                'cardinality': {
+                  'field': 'browser_id_hash'
                 }
               }
             }
@@ -71,8 +71,8 @@ export class ReportDetailComponent implements OnInit {
       jsonData.query = {
         condition: 'AND',
         rules: []
-      }
-    };    
+      };
+    }
 
     this.idxService.getQueryResult(jsonData).subscribe(
       res => {
