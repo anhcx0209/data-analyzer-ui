@@ -50,6 +50,8 @@ export class QueryAddComponent implements OnInit {
 
   selectedAgg: AssAggregation = null;
 
+  chart: any;
+
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('validateSwal') private validateSwal: SwalComponent;
 
@@ -114,12 +116,36 @@ export class QueryAddComponent implements OnInit {
   }
 
   runQuery() {
+    // clear old query first
+    if (this.chart) {
+      this.chart.destroy();
+      const ctx0 = this.canvas.nativeElement.getContext('2d');
+      ctx0.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    }
     const validated = this.validateQuery();
     console.log(validated);
+    const q = this.getRules();
+    const k = q.rules.map(item => {
+      if (item.id === 'os_name') {
+        return {
+          id: 'metrics.os_name',
+          field: 'metrics.os_name',
+          type: item.type,
+          input: item.input,
+          value: item.value,
+          operator: item.operator,
+        };
+      } else {
+        return item;
+      }
+    });
     if (validated) {
       const jsonData = {
         index: this.queryModel.index_type,
-        query: this.getRules(),
+        query: {
+          condition: q.condition,
+          rules: k
+        },
         agg: {
           aggs: this.selectedAgg ? JSON.parse(this.selectedAgg.content) : '{}'
         }
@@ -151,14 +177,17 @@ export class QueryAddComponent implements OnInit {
           const chartData = {
             labels: labels,
             datasets: [{
-              label: 'dataset1',
+              // fill: false,
+              label: 'line',
+              lineTension: 0,
+              borderColor: '#2ae866',
               data: data,
             }]
           };
 
           const ctx = this.canvas.nativeElement.getContext('2d');
 
-          new Chart(ctx, {
+          this.chart = new Chart(ctx, {
             type: 'line',
             data: chartData,
             options: {

@@ -22,7 +22,7 @@ export class ReportDetailComponent implements OnInit {
 
   @ViewChild('canvas') canvas: ElementRef;
 
-  modelQuery = {
+  modelRules = {
     condition: 'AND',
     rules: [
       { id: 'os_name', field: 'os_name', type: 'string', input: 'text', operator: 'equal', value: 'windows' },
@@ -31,107 +31,112 @@ export class ReportDetailComponent implements OnInit {
     ]
   };
 
-  buildRule() {
-    console.log('hello');
+  buildRules() {
+    this.modelRules.rules[0].value = this.modFields.os_name;
+    this.modelRules.rules[1].value = this.modFields.os_name;
+    this.modelRules.rules[2].value = this.modFields.os_name;
+  }
+
+  runQuery() {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const id = [+params.get('reportId')];
-      console.log(id);
-    });
+    // this.route.paramMap.subscribe(params => {
+    //   const id = [+params.get('reportId')];
+    //   console.log(id);
+    // });
 
-    const jsonData = {
-      index: 'coccoc_users',
-      query: this.modelQuery,
-      agg: {
-        aggs: {
-          '3': {
-            'histogram': {
-              'script': {
-                'source': 'LocalDateTime.ofInstant(doc[\'event_date\'].value.toInstant(), ZoneId.of(\'GMT+7\')).getDayOfWeek().getValue()',
-                'lang': 'painless'
-              },
-              'interval': 1,
-              'min_doc_count': 1
-            },
-            'aggs': {
-              '2': {
-                'cardinality': {
-                  'field': 'browser_id_hash'
-                }
-              }
-            }
-          }
-        }
-      }
-    };
+    // const jsonData = {
+    //   index: 'coccoc_users',
+    //   query: this.modelQuery,
+    //   agg: {
+    //     aggs: {
+    //       '3': {
+    //         'histogram': {
+    //           'script': {
+    //             'source': 'LocalDateTime.ofInstant(doc[\'event_date\'].value.toInstant(), ZoneId.of(\'GMT+7\')).getDayOfWeek().getValue()',
+    //             'lang': 'painless'
+    //           },
+    //           'interval': 1,
+    //           'min_doc_count': 1
+    //         },
+    //         'aggs': {
+    //           '2': {
+    //             'cardinality': {
+    //               'field': 'browser_id_hash'
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // };
 
-    if (jsonData.query === null) {
-      jsonData.query = {
-        condition: 'AND',
-        rules: []
-      };
-    }
+    // if (jsonData.query === null) {
+    //   jsonData.query = {
+    //     condition: 'AND',
+    //     rules: []
+    //   };
+    // }
 
-    this.idxService.getQueryResult(jsonData).subscribe(
-      res => {
-        let labels = [];
-        let data = [];
-        const result = res.results;
-        const key = Object.keys(result).pop();
-        result[key]['buckets'].forEach(element => {
-          labels.push(element['key']);
-          const k1 = Object.keys(element).shift();
-          console.log(element[k1]['value']);
-          data.push(element[k1]['value']);
-        });
+    // this.idxService.getQueryResult(jsonData).subscribe(
+    //   res => {
+    //     let labels = [];
+    //     let data = [];
+    //     const result = res.results;
+    //     const key = Object.keys(result).pop();
+    //     result[key]['buckets'].forEach(element => {
+    //       labels.push(element['key']);
+    //       const k1 = Object.keys(element).shift();
+    //       console.log(element[k1]['value']);
+    //       data.push(element[k1]['value']);
+    //     });
 
-        const chartData = {
-          labels: labels,
-          datasets: [{
-            label: 'dataset1',
-            data: data,
-          }]
-        };
+    //     const chartData = {
+    //       labels: labels,
+    //       datasets: [{
+    //         label: 'dataset1',
+    //         data: data,
+    //       }]
+    //     };
 
-        const ctx = this.canvas.nativeElement.getContext('2d');
+    //     const ctx = this.canvas.nativeElement.getContext('2d');
 
-        new Chart(ctx, {
-          type: 'line',
-          data: chartData,
-          options: {
-            responsive: true,
-            scales: {
-              xAxes: [{
-                stacked: true,
-                gridLines: {
-                  color: '#F7F7F7'
-                }
-              }],
-              yAxes: [{
-                stacked: true,
-                gridLines: {
-                  color: '#F7F7F7'
-                },
-              }]
-            },
-            legend: {
-              display: false
-            },
-            elements: {
-              line: {
-                tension: 0 // disables bezier curves
-              }
-            },
-            tooltips: {
-              mode: 'index',
-              intersect: false
-            },
-          }
-        });
-      }
-    );
+    //     new Chart(ctx, {
+    //       type: 'line',
+    //       data: chartData,
+    //       options: {
+    //         responsive: true,
+    //         scales: {
+    //           xAxes: [{
+    //             stacked: true,
+    //             gridLines: {
+    //               color: '#F7F7F7'
+    //             }
+    //           }],
+    //           yAxes: [{
+    //             stacked: true,
+    //             gridLines: {
+    //               color: '#F7F7F7'
+    //             },
+    //           }]
+    //         },
+    //         legend: {
+    //           display: false
+    //         },
+    //         elements: {
+    //           line: {
+    //             tension: 0 // disables bezier curves
+    //           }
+    //         },
+    //         tooltips: {
+    //           mode: 'index',
+    //           intersect: false
+    //         },
+    //       }
+    //     });
+    //   }
+    // );
   }
 
 }
