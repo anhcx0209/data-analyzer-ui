@@ -51,7 +51,7 @@
     "install": "^0.13.0",
     "jQuery-QueryBuilder": "^2.5.2",
     "jquery": "^3.4.1",
-    "lodash-es": "^4.17.4",
+    "lodash-es": "^4.17.21",
     "moment": "^2.18.1",
     "ngx-json-viewer": "^2.4.0",
     "normalize.css": "^7.0.0",
