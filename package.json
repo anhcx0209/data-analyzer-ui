@@ -52,7 +52,7 @@
     "jQuery-QueryBuilder": "^2.5.2",
     "jquery": "^3.4.1",
     "lodash-es": "^4.17.4",
-    "moment": "^2.18.1",
+    "moment": "^2.29.2",
     "ngx-json-viewer": "^2.4.0",
     "normalize.css": "^7.0.0",
     "npm": "^6.10.3",
